@@ -15,30 +15,32 @@
 
 <script type="text/babel">
     // Variable Transfer
-    function Btn({text, onClick}){
-        console.log(text, " was rended")
-        return <button 
-            onClick={onClick}
-            style={{
+    function Btn({text, big}){
+        return <button style={{
+            backgroudColor: "tomato",
+            color:"white",
+            padding:"10px 20px",
+            border: 0,
+            borderRadius: 10,
+            fontSize: big ? 18 : 16 
+        }}>{text}</button>;
+    }
+    // Object transfer
+    /* function Btn(props){
+        return <button style={{
             backgroudColor: "tomato",
             color:"white",
             padding:"10px 20px",
             border: 0,
             borderRadius: 10
-        }}>{text}</button>;
-    }
-    const MemorizedBtn = React.memo(Btn); // App() 재실행 방지
-    Btn.prototype = { // Btn prop 타입 설정
-        text: PropTypes.string.isRequired, // 필수 prop isRequired
-        fontSize: PropTypes.number, // 옵션 prop
-    }
+            fontSize: props.big ? 18 : 16 
+        }}>{props.text}</button>;
+    } */
     function App(){
-        const [value, setValue] = React.useState("Save Changes")
-        const changeValue = () => setValue("Revert Changes")
         return (
         <div>
-            <MemorizedBtn text={value} onClick={changeValue}/*이벤트 리스너 아님 prob임*//>
-            <MemorizedBtn text="Continue"/>
+            <Btn text="Save Changes" big={true}/>
+            <Btn text="Continue" big={false}/>
         </div>
         );
     }

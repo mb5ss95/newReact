@@ -15,31 +15,26 @@
 
 <script type="text/babel">
     // Variable Transfer
-    function Btn({banana, big}){
-        return <button style={{
-            backgroudColor: "tomato",
-            color:"white",
-            padding:"10px 20px",
-            border: 0,
-            borderRadius: 10,
-            fontSize: big ? 18 : 16 
-        }}>{banana}</button>;
-    }
-    // Object transfer
-    /* function Btn(props){
-        return <button style={{
-            backgroudColor: "tomato",
+    function Btn({text, onClick}){
+        console.log(text, "was rended")
+        return <button 
+            onClick={onClick}
+            style={{
+            backgroundColor: "tomato",
             color:"white",
             padding:"10px 20px",
             border: 0,
             borderRadius: 10
-        }}>{props.banana}</button>;
-    } */
+        }}>{text}</button>;
+    }
+    const MemorizedBtn = React.memo(Btn); // App() 재실행 방지, 웹 켜질때 자동 실행되는 것을 방지
     function App(){
+        const [value, setValue] = React.useState("Save Changes")
+        const changeValue = () => setValue("Revert Changes")
         return (
         <div>
-            <Btn banana="Save Changes" big={true}/>
-            <Btn banana="Continue" big={false}/>
+            <MemorizedBtn text={value} onClick={changeValue}/*이벤트 리스너 아님 prob임*//>
+            <MemorizedBtn text="Continue"/>
         </div>
         );
     }
