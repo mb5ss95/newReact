@@ -36,3 +36,11 @@ nodejs
 npm = package manager (관리)
 npx = package runner (실행)
 
+js
+
+const temp = [1, 2, 3, 4, 5]
+[6, temp] //(2) [6, Array(5)]
+[6, ...temp] //(6) [6, 1, 2, 3, 4, 5]
+
+useState = set, get value 
+useEffect = catch change, once run
